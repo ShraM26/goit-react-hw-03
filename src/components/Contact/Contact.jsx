@@ -1,13 +1,13 @@
-// import css from './Contact.module.css'
+ import css from './Contact.module.css'
 import { FiUser, FiPhone } from "react-icons/fi";
 
 
-const Contact = ({name, number}) => {
+const Contact = ({name, number, id, onDelete}) => {
     return (
-        <li>
-            <p><FiUser /> {name}</p>
-            <p><FiPhone /> {number}</p>
-            <button type="button">Delete</button>
+        <li className={css.itemCnt}>
+            <p className={css.text}><FiUser className={css.iconU} /> {name}</p>
+            <p className={css.text}><FiPhone className={css.iconP} /> {number}</p>
+            <button className={css.btnDelete} type="button" onClick={() => onDelete(id)}>Delete</button>
         </li>
     );
 };
