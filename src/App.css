@@ -38,3 +38,6 @@ button {
   flex-direction: column;
  
 }
+.title {
+  margin-bottom: 10px;
+}

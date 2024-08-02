@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 
 
-const ContactForm = ({initialValues, validationSchema, handleSubmit}) => {
+const ContactForm = ({initialValues, validationSchema, handleSubmit, nameFieldId, numberFieldId}) => {
    
     return (
         <>
@@ -13,25 +13,27 @@ const ContactForm = ({initialValues, validationSchema, handleSubmit}) => {
                 onSubmit={handleSubmit} 
     >
       {() => (
-        <Form className={css.cntForm}>
-          <label className={css.text} htmlFor="name">Name</label>
+            <Form className={css.Form}>
+          <div className={css.cntInp}>
+          <label className={css.text} htmlFor={nameFieldId}>Name</label>
           <Field className={css.input}
             type="text"
-            id="name"
+            id={nameFieldId}
             name="name"
             placeholder="Monica Bellucci"
           />
-          <ErrorMessage className={css.error} name="name" component="span" />
-
-          <label className={css.text} htmlFor="number">Number</label>
+            <ErrorMessage className={css.error} name="name" component="span" />
+            </div>
+            <div className={css.cntInp}>
+          <label className={css.text} htmlFor={numberFieldId}>Number</label>
           <Field className={css.input}
             type="text"
-            id="number"
+            id={numberFieldId}
             name="number"
             placeholder="999-99-99"
           />
             <ErrorMessage className={css.error} name="number" component="span" />
-
+            </div>    
           <button className={css.addBtn} type="submit">Add Contact</button>
         </Form>
       )}

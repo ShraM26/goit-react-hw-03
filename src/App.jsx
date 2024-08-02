@@ -3,7 +3,7 @@ import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
 // =================================================
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useId } from 'react'
 import './App.css'
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
@@ -69,7 +69,11 @@ const App = () => {
     const newContact = { id: nanoid(), ...values };
     addContact(newContact);
     resetForm();
-  };
+     };
+  // ========================== створюем уникальний  индикатор полив ============
+  const nameFieldId = useId();
+  const numberFieldId = useId();
+  const searchInputId = useId();
 // ========================== додавання нового контакту ==========================
   const addContact = (newContact) => {
           setPhoneBook(prevContacts => [...prevContacts, newContact]);
@@ -84,17 +88,24 @@ const App = () => {
          contact.name.toLowerCase().includes(filter.toLowerCase())
   );
   
+ 
+   
+
+  
   return (
     <>
       <div className='addContact'>
-       <h1>Phonebook</h1>
+       <h1 className='title'>Phonebook</h1>
       <ContactForm
                    validationSchema={validationSchema}
                    initialValues={initialValues}
-                   handleSubmit={handleSubmit} />
+                   handleSubmit={handleSubmit}
+                   nameFieldId={nameFieldId}
+                   numberFieldId={numberFieldId} />
       <SearchBox
-                   value={filter}
-          onFilter={setFilter} />
+                  value={filter}
+                  onFilter={setFilter}
+                  searchInputId={searchInputId} />
         </div>
       <ContactList
                    contacts={filteredContacts}
